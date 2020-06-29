@@ -24,11 +24,13 @@ public class ReferenceCountingGC {
         objA.instance = objB;
         //对象A被B引用了   计数器为1
         objB.instance = objA;
-        //a对象引用改为null  按照道理需要回收内存了 但是由于A的引用计数不为0 被B引用了不回收
+        //a对象引用改为null
         objA = null;
-        //b对象引用改为null  按照道理需要回收内存了 但是由于B的引用计数不为0 被A引用了不回收
+        //b对象引用改为null
         objB = null;
         //假设在这行发生GC， objA和objB是否能被回收？
+        //按照道理需要回收内存了 但是由于A的引用计数不为0 被B引用了不回收
+        //按照道理需要回收内存了 但是由于B的引用计数不为0 被A引用了不回收
         System.gc();
     }
 
